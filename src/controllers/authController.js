@@ -16,12 +16,12 @@ router.post('/authenticate', async (req, res) => {
         const { user, password } = req.body;
 
         if (user !== 'Numenu')
-            return res.status(400).send({ error: 'User not found' })
+            return res.status(400).send({ error: 'Usuário não encontrado' })
 
         const hash = await bcrypt.hash('123123', 10);
 
         if (!await bcrypt.compare(password, hash))
-            return res.status(400).send({ error: 'Invalid password'});
+            return res.status(400).send({ error: 'Senha incorreta'});
         
         const id = '5a291f40379ee1483f5600c1';
 
@@ -31,7 +31,7 @@ router.post('/authenticate', async (req, res) => {
         });
 
     } catch (err) {
-        console.log(err);
+        return res.status(400).send({ error: 'Falha na autenticação' });
     }  
 });
 
