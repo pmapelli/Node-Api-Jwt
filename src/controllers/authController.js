@@ -23,11 +23,9 @@ router.post('/authenticate', async (req, res) => {
         if (!await bcrypt.compare(password, hash))
             return res.status(400).send({ error: 'Senha incorreta'});
         
-        const id = '5a291f40379ee1483f5600c1';
-
         return res.send({ 
             user, 
-            token: generateToken({ id }) ,
+            token: generateToken({ hash }) ,
         });
 
     } catch (err) {
