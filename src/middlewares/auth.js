@@ -7,8 +7,6 @@ module.exports = (req, res, next) => {
     if(!authHeader)
         return res.status(401).send({ error: 'No token provided' });
 
-    console.log(authHeader);
-
     const parts = authHeader.split(' ');
 
     if (!parts.length === 2)
